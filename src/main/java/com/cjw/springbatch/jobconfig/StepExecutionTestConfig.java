@@ -40,8 +40,17 @@ public class StepExecutionTestConfig {
         return stepBuilderFactory.get("stepExecutionSuccessStep2")
                 //JobExecutionTest
                 .tasklet((contribution, chunkContext) -> {
+                    throw new RuntimeException("에러 발생");
+                }).build();
+    }
+
+    @Bean
+    public Step stepExecutionSuccessStep3() {
+        return stepBuilderFactory.get("stepExecutionSuccessStep3")
+                //JobExecutionTest
+                .tasklet((contribution, chunkContext) -> {
                     System.out.println("=====================");
-                    System.out.println(">> StepExecutionSuccessStep2 ");
+                    System.out.println(">> StepExecutionSuccessStep3 ");
                     System.out.println("=====================");
                     return RepeatStatus.FINISHED;
                 }).build();

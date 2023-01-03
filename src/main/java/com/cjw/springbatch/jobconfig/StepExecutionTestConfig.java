@@ -15,13 +15,13 @@ public class StepExecutionTestConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+    /*@Bean
     public Job stepExecutionJob() {
         return jobBuilderFactory.get("stepExecutionJob")
                 .start(stepExecutionSuccessStep1())
                 .next(stepExecutionSuccessStep2())
                 .build();
-    }
+    }*/
 
     @Bean
     public Step stepExecutionSuccessStep1() {

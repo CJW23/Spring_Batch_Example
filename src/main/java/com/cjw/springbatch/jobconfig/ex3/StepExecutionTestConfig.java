@@ -1,4 +1,4 @@
-package com.cjw.springbatch.jobconfig;
+package com.cjw.springbatch.jobconfig.ex3;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -11,40 +11,47 @@ import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
 @Configuration
-public class JobExecutionTestConfig {
+public class StepExecutionTestConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
     /*@Bean
-    public Job jobExecutionJob() {
-        return jobBuilderFactory.get("jobExecution")
-                .start(jobExecutionFailedTestStep())
+    public Job stepExecutionJob() {
+        return jobBuilderFactory.get("stepExecutionJob")
+                .start(stepExecutionSuccessStep1())
+                .next(stepExecutionSuccessStep2())
                 .build();
     }*/
 
-    /**
-     * JobExecutionTest Completed
-     */
     @Bean
-    public Step jobExecutionCompletedTestStep() {
-        return stepBuilderFactory.get("jobExecutionTestCompleted")
+    public Step stepExecutionSuccessStep1() {
+        return stepBuilderFactory.get("stepExecutionSuccessStep1")
                 //JobExecutionTest
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println("=====================");
-                    System.out.println(">> JobExecutionTest ");
+                    System.out.println(">> StepExecutionSuccessStep1 ");
                     System.out.println("=====================");
                     return RepeatStatus.FINISHED;
                 }).build();
     }
 
-    /**
-     * JobExecutionTest Failed
-     */
     @Bean
-    public Step jobExecutionFailedTestStep() {
-        return stepBuilderFactory.get("jobExecutionTestFailed")
+    public Step stepExecutionSuccessStep2() {
+        return stepBuilderFactory.get("stepExecutionSuccessStep2")
                 //JobExecutionTest
                 .tasklet((contribution, chunkContext) -> {
+                    throw new RuntimeException("에러 발생");
+                }).build();
+    }
+
+    @Bean
+    public Step stepExecutionSuccessStep3() {
+        return stepBuilderFactory.get("stepExecutionSuccessStep3")
+                //JobExecutionTest
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println("=====================");
+                    System.out.println(">> StepExecutionSuccessStep3 ");
+                    System.out.println("=====================");
                     return RepeatStatus.FINISHED;
                 }).build();
     }

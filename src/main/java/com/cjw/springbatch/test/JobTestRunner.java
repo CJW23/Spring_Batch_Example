@@ -30,7 +30,7 @@ public class JobTestRunner implements ApplicationRunner {
 
     private JobParameters jobExecutionFailedTest() {
         return new JobParametersBuilder()
-                .addString("jobExecutionFailedTest", "test")
+                .addString("jobExecutionFailedTest2", "test2")
                 .toJobParameters();
     }
 

@@ -1,8 +1,9 @@
-package com.cjw.springbatch.jobconfig;
+package com.cjw.springbatch.jobconfig.ex4;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ExecutionContext;
@@ -22,19 +23,19 @@ import static org.springframework.util.ObjectUtils.isEmpty;
  * Step3: Step2에서 저장한 JobExecutionContext의 name값 출력
  */
 @RequiredArgsConstructor
-@Configuration
+//@Configuration
 public class ExecutionContextTestConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+    /*@Bean
     public Job jobExecutionJob() {
         return jobBuilderFactory.get("jobExecution")
                 .start(executionContextTestStep1())
                 .next(executionContextTestStep2())
                 .next(executionContextTestStep3())
                 .build();
-    }
+    }*/
 
     @Bean
     public Step executionContextTestStep1() {
